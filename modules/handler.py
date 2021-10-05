@@ -98,7 +98,7 @@ class Handler:
         if self.filter.check_auth(message):
             self.log.log_message(message)
             current = self.covid.get_current_people()
-            bot.send_message(message.chat.id, current)
+            bot.send_message(message.chat.id, "%s people inside" % current)
         return
 
     """
