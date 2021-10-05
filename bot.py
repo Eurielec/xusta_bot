@@ -107,7 +107,7 @@ if __name__ == "__main__":
         h.get_current_people_handler(message)
         return
 
- """
+    """
     @bot.message_handler(commands=['getturn', 'getTurn'])
     def get_turn(message):
         h.get_turn_handler(message)
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     def turn_undo(message):
         h.turn_undo_handler(message)
         return
-"""
+    """
 
     @bot.message_handler(commands=['camerareset', 'cameraReset'])
     def reset_camera(message):
