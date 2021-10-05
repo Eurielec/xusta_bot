@@ -27,7 +27,7 @@ from modules import covid
 import threading
 
 
-class Handlers:
+class Handler:
 
     def __init__(self):
         self.cam = camera.Camera()
