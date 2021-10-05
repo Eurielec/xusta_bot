@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  xusta_bot:
+    container_name: xusta_bot
+    build: ./
+    image: local/xusta_bot:latest
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - 7001:80
+    volumes:
+      - $XUSTABOT_DATA:/app/logs/logs.csv
+    devices:
+      - /dev/input/by-path/platform-pcspkr-event-spkr:/dev/input/by-path/platform-pcspkr-event-spkr
+    environment:
+      - TOKEN=$BOT_TOKEN
+      - LOG_FILE=$MESSAGES_LOG_FILE
+      - HOST=$HOST
+      - PORT=$PORT
+      - CAM_USER=$CAM_USER
+      - CAM_PASSWORD=$CAM_PASSWORD
+      - CAM_IP=$CAM_IP
+      - CAM_PORT=$CAM_PORT
+      - GODMODE=$GODMODE
+      - GROUPS=$GROUPS
+      - TIMES_A_DAY=$TIMES_A_DAY
+      - GET_INTERVAL=$GET_INTERVAL
+    networks:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.telegram.entrypoints=websecure
+      - traefik.http.routers.telegram.rule=Host(`telegram.$DOMAIN`)
+      - traefik.http.routers.telegram.tls=true
+      - traefik.http.routers.telegram.tls.certresolver=le
+networks:
+  traefik:
+    name: traefik
+    external: true

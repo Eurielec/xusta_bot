@@ -1,0 +1,6 @@
+requests
+ffmpy
+pyTelegramBotAPI
+aiohttp
+gspread
+oauth2client
