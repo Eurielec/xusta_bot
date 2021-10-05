@@ -8,7 +8,7 @@ import os
 import telebot
 
 # Import handlers for decorators
-from modules import handlers
+from modules import handler
 
 # Import for logging (debug or info)
 import logging
