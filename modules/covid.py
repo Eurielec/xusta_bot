@@ -11,9 +11,13 @@ class Covid:
         self.covid_endpoint = os.environ.get(
             'COVID_BACKEND_ENDPOINT', 'decovid.eurielec.etsit.upm.es')
 
-    def get_current_people(self):
+    def get_current_people(self, club: str = "eurielec"):
         """
         Returns the number of people currently at the local
         """
-        r = requests.get('https://%s/current' % self.covid_endpoint)
-        return r.text
+        try:
+            r = requests.get('https://%s/current/%s' %
+                             (self.covid_endpoint, club))
+            return r.text
+        except Exception:
+            return None

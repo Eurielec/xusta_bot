@@ -97,8 +97,15 @@ class Handler:
     def get_current_people_handler(self, message):
         if self.filter.check_auth(message):
             self.log.log_message(message)
-            current = self.covid.get_current_people()
-            bot.send_message(message.chat.id, "%s people inside" % current)
+            try:
+                club = message.text.split(" ")[1]
+            except Exception:
+                club = "eurielec"
+            current = self.covid.get_current_people(club=club)
+            if current is not None:
+                bot.send_message(message.chat.id, "%s people inside" % current)
+            else:
+                bot.send_message(message.chat.id, "I don't know")
         return
 
     """
