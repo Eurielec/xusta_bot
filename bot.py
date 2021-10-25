@@ -104,7 +104,7 @@ if __name__ == "__main__":
 
     @bot.message_handler(commands=['getcurrentpeople', 'getCurrentPeople', 'g'])
     def get_current_people(message):
-        h.get_current_people_handler(message)
+        h.get_current_people_number_handler(message)
         return
 
     """
