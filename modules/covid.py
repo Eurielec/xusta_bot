@@ -18,6 +18,9 @@ class Covid:
         try:
             r = requests.get('https://%s/current/%s' %
                              (self.covid_endpoint, club))
-            return r.text
+            if r.status_code == 200:
+                return r.text
+            else:
+                return None
         except Exception:
             return None
