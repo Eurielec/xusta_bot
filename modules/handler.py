@@ -94,13 +94,13 @@ class Handler:
             bot.send_message(filter.groups[1], message.text[6:])
         return
 
-    def get_current_people_handler(self, message):
+    def get_current_people_number_handler(self, message):
         self.log.log_message(message)
         try:
             club = message.text.split(" ")[1]
         except Exception:
             club = "eurielec"
-        current = self.covid.get_current_people(club=club)
+        current = self.covid.get_current_people_number(club=club)
         if current is not None:
             bot.send_message(message.chat.id, "%s people inside" % current)
         else:

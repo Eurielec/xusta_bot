@@ -102,7 +102,7 @@ if __name__ == "__main__":
         h.cast_handler(message)
         return
 
-    @bot.message_handler(commands=['getcurrentpeople', 'getCurrentPeople'])
+    @bot.message_handler(commands=['getcurrentpeople', 'getCurrentPeople', 'g'])
     def get_current_people(message):
         h.get_current_people_handler(message)
         return
