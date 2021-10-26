@@ -5,16 +5,20 @@ Eurielec's Telegram bot.
 
 ## Features
 
-* **/getImage**: Sends an image looking at the door.
-* **/getVideo**: Sends a gif looking at the door.
-* **/getSalseo**: Sends a gif with panning from the door to the sofa and back.
-* **/getNevera**: Sends a gif with panning from the door to the microwave and back.
-* **/test**: Sends "Hi!" to test if the bot is up.
-* **/getId**: Sends the chat.id of the current chat (group's id if called in a group, your's if called privately).
-* **/getTurn**: Sends who has to take the trash out.
-* **/turnDone**: Marks current turn as done and sends a picture of the trash so people can check.
-* **/turnUndo**: Marks current turn as not done (in case the picture sent by turnDone wasn't the expected result).  
-* **others**: Undocumented or for admins only (you can read them in the code, but you mainly won't have access to those).
+##### Active
+*   **/getImage**: Sends an image looking at the door.
+*   **/getVideo**: Sends a gif looking at the door.
+*   **/getSalseo**: Sends a gif with panning from the door to the sofa and back.
+*   **/getNevera**: Sends a gif with panning from the door to the microwave and back.
+*   **/test**: Sends "Hi!" to test if the bot is up.
+*   **/getCurrentPeople**: Sends the current people number at an association.
+*   **/getId**: Sends the chat.id of the current chat (group's id if called in a group, your's if called privately).
+*   **others**: Undocumented or for admins only (you can read them in the code, but you mainly won't have access to those).
+
+##### Not active
+*   **/getTurn**: Sends who has to take the trash out.
+*   **/turnDone**: Marks current turn as done and sends a picture of the trash so people can check.
+*   **/turnUndo**: Marks current turn as not done (in case the picture sent by turnDone wasn't the expected result).
 
 > Every time an access to the camera occurs, the server will notice people by beeping (depends on if the camera will move or not)
 

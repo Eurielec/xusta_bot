@@ -42,7 +42,7 @@ bot = telebot.TeleBot(API_TOKEN)
 
 # Initialize the info level in logging
 logger = telebot.logger
-telebot.logger.setLevel(logging.DEBUG)
+telebot.logger.setLevel(logging.INFO)
 
 
 # If executed directly
