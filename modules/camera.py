@@ -105,7 +105,9 @@ class Camera:
         self.move_lock.acquire()
         url = '%sdecoder_control.cgi?loginuse=%s&loginpas=%s&onestep=0&command=%s' % (
             self.cam_url, self.cam_user, self.cam_password, pos)
-        requests.get(url)
+        print("URL", url)
+        r = requests.get(url)
+        print("REQUEST RESULT", r.status_code, r.content)
         # It will always take less than 7 seconds
         time.sleep(7)
         self.move_lock.release()

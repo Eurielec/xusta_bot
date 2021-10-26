@@ -44,7 +44,6 @@ bot = telebot.TeleBot(API_TOKEN)
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
 
-
 # If executed directly
 if __name__ == "__main__":
 
