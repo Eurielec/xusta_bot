@@ -222,7 +222,7 @@ class Camera:
                     self.cam_url,
                     self.cam_user,
                     self.cam_password): """
-                    -r 10 -t %s -hide_banner -loglevel panic""" % (timeleft)},
+                    -r 20 -t %s -hide_banner -loglevel panic""" % (timeleft)},
             outputs={
                 'pipe:1': """
                 -movflags frag_keyframe+empty_moov -c:v h264 -r 20 -f mp4"""})
