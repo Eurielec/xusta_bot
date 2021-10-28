@@ -9,6 +9,7 @@ import os
 
 # Imports to make http requests
 import requests
+import urllib.parse
 
 # Imports to handle time
 import time
@@ -90,7 +91,7 @@ class Camera:
         try:
             result = requests.get(
                 '%sset_alias.cgi?alias=%s' % (
-                    self.cam_url, alias),
+                    self.cam_url, urllib.parse.quote(alias)),
                 auth=(self.cam_user, self.cam_password))
             if result.status_code == 200:
                 bot.send_photo(message.chat.id, "Done")
