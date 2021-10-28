@@ -91,13 +91,14 @@ class Camera:
             result = requests.get(
                 '%sset_alias.cgi?alias=%s' % (
                     self.cam_url, alias),
-                auth=(self.cam_user, self.cam_password)).content
+                auth=(self.cam_user, self.cam_password))
             if result.status_code == 200:
                 bot.send_photo(message.chat.id, "Done")
             else:
                 bot.send_photo(message.chat.id, "Failed")
         # Tell users to check the camera if an error occurs
-        except Exception:
+        except Exception as e:
+            logging.error(e)
             bot.send_message(message.chat.id, "Camera seems to be offline")
         return
 
