@@ -101,6 +101,11 @@ if __name__ == "__main__":
         h.cast_handler(message)
         return
 
+    @bot.message_handler(commands=['setalias', 'setAlias'])
+    def set_alias(message):
+        h.set_camera_alias_handler(message)
+        return
+
     @bot.message_handler(commands=['getcurrentpeople', 'getCurrentPeople', 'g'])
     def get_current_people(message):
         h.get_current_people_number_handler(message)

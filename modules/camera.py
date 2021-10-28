@@ -79,6 +79,27 @@ class Camera:
         self.cam_lock.release()
         return
 
+    def set_alias(self, message, alias):
+        """
+        Set camera alias
+
+        Arguments:
+            - alias: name to appear on the top left of the camera
+        """
+        # Set the alias (WANSCAM API)
+        try:
+            result = requests.get(
+                '%sset_alias.cgi?user=%s&pwd=%s' % (self.cam_url),
+                auth=(self.cam_user, self.cam_password)).content
+            if result.status_code == 200:
+                bot.send_photo(message.chat.id, "Done")
+            else:
+                bot.send_photo(message.chat.id, "Failed")
+        # Tell users to check the camera if an error occurs
+        except Exception:
+            bot.send_message(message.chat.id, "Camera seems to be offline")
+        return
+
     def reset(self, message):
         """
         Reset the camera

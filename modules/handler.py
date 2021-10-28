@@ -94,6 +94,12 @@ class Handler:
             bot.send_message(filter.groups[1], message.text[6:])
         return
 
+    def set_camera_alias_handler(self, message):
+        if self.filter.god_check_auth(message):
+            self.log.log_message(message)
+            self.cam.set_alias(message, " ".join(message.text.split(" ")[1:]))
+        return
+
     def get_current_people_number_handler(self, message):
         self.log.log_message(message)
         try:
