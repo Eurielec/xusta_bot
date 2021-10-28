@@ -87,7 +87,7 @@ class Camera:
             - message: to interact with the message
         """
         try:
-            url = "%sreboot.cgi?loginuse=%s&loginpas=%s" % (
+            url = "%sreboot.cgi?user=%s&pwd=%s" % (
                 self.cam_url, self.cam_user, self.cam_password)
             requests.get(url)
             bot.send_message(message.chat.id, "Camera is being reseted")
@@ -105,7 +105,7 @@ class Camera:
         """
         pos = str(position)
         self.move_lock.acquire()
-        url = '%sdecoder_control.cgi?loginuse=%s&loginpas=%s&onestep=0&command=%s' % (
+        url = '%sdecoder_control.cgi?user=%s&pwd=%s&onestep=0&command=%s' % (
             self.cam_url, self.cam_user, self.cam_password, pos)
         logging.info("URL", url)
         r = requests.get(url)
@@ -166,7 +166,8 @@ class Camera:
                                  "Camera working abnormally")
                 self.reset(message)
             bot.send_video(message.chat.id, video)
-        except Exception:
+        except Exception as e:
+            logging.error(e)
             bot.send_message(message.chat.id, "Camera seems to be offline")
         self.cam_lock.release()
         return
@@ -216,6 +217,12 @@ class Camera:
             - timeleft: duration in seconds
         """
         return FFmpeg(
-            inputs={'%svideostream.cgi?loginuse=%s&loginpas=%s&resolution=32&rate=1' % (
-                self.cam_url, self.cam_user, self.cam_password): '-r 20 -t %s -hide_banner -loglevel panic' % (timeleft)},
-            outputs={'pipe:1': '-movflags frag_keyframe+empty_moov -c:v h264 -r 20 -f mp4'})
+            inputs={
+                '%svideostream.cgi?user=%s&pwd=%s&resolution=32&rate=1' % (
+                    self.cam_url,
+                    self.cam_user,
+                    self.cam_password): """
+                    -r 10 -t %s -hide_banner -loglevel panic""" % (timeleft)},
+            outputs={
+                'pipe:1': """
+                -movflags frag_keyframe+empty_moov -c:v h264 -r 20 -f mp4"""})
