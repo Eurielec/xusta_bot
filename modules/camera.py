@@ -89,11 +89,14 @@ class Camera:
         """
         # Set the alias (WANSCAM API)
         try:
-            requests.get(
+            result = requests.get(
                 '%sset_alias.cgi?alias=%s' % (
                     self.cam_url, urllib.parse.quote(alias)),
                 auth=(self.cam_user, self.cam_password))
-            bot.send_photo(message.chat.id, "Done")
+            if result == 200:
+                bot.send_message(message.chat.id, "Done")
+            else:
+                bot.send_message(message.chat.id, "Fail")
         # Tell users to check the camera if an error occurs
         except Exception as e:
             logging.error(e)
