@@ -89,7 +89,8 @@ class Camera:
         # Set the alias (WANSCAM API)
         try:
             result = requests.get(
-                '%sset_alias.cgi?user=%s&pwd=%s' % (self.cam_url),
+                '%sset_alias.cgi?alias=%s' % (
+                    self.cam_url, alias),
                 auth=(self.cam_user, self.cam_password)).content
             if result.status_code == 200:
                 bot.send_photo(message.chat.id, "Done")
