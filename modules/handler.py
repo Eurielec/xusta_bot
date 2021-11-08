@@ -91,7 +91,7 @@ class Handler:
     def cast_handler(self, message):
         if self.filter.god_check_auth(message):
             self.log.log_message(message)
-            bot.send_message(filter.groups[1], message.text[6:])
+            bot.send_message(self.filter.groups[1], message.text[6:])
         return
 
     def set_camera_alias_handler(self, message):
